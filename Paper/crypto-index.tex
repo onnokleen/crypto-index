@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{hyperref}
+
+\title{Lykke Index 20}
+\author{Onno Kleen \and Christopher Zuber}
+\begin{document}
+\maketitle
+\section{Index}
+
+Some Text.\footnote{Code and .tex-files can be found at \href{https://github.com/onnokleen/crypto-index}{https://github.com/onnokleen/crypto-index}}
+
+\subsection{Definition}
+
+\begin{itemize}
+  \item Price $p_{i,t}$: price of asset $i$ at time $t$
+  \item Quantity $q_{i,t}$: overall number of shares/items per asset $i$ at time $t$
+\end{itemize}
+\subsection{Questions to address}
+\begin{itemize}
+  \item Why 20 currencies? 19-09-2017 14:41 20th market capitalisation (STEEM) is only \$286.382.955	and 24 hour trading volume of \$686.
+  \item ``Dead coins'' a problem?
+  \item If there is a split (like Bitcoin), new currency is part of Lykke 20 but is part of constituents-check at the end of the week.
+  \item Basis: 1000 Punkte?
+  \item How to get market capitalization of public float?
+  \item Maximal weight maybe 20\%? DAX: Maximum weight 10\%.
+\end{itemize}
+
+\subsection{How does it work in other indices}
+
+\begin{itemize}
+  \item DAX: Weighting based on market capitalization of public float (bedeutet Streubesitz, keine Aktien von Langzeitanlegern  wie Familie Porsche/Quant).
+\end{itemize}
+
+\subsection{Features}
+
+\begin{itemize}
+  \item 
+  \item Constituent changes each week. Maybe Friday? Maybe based on trade volume in last 7 days? Good against ``dead coins''.
+\end{itemize}
+
+
+\section{Example}
+
+Data is from \href{https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory}{https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory}
+
+or CoinCap.io via Rest API
+
+Something nice to illustrate:
+\begin{itemize}
+  \item Volatility in August (Bitcoin-split versus July). Show new composition after split.
+\end{itemize}
+
+\end{document}
