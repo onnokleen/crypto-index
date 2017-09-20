@@ -99,7 +99,7 @@ df_index <-
 
 write_csv(df_index, "../Matlab/df_index.csv")
 
-index_dates <- unique(df_index$date)
+index_dates <- unique(df_index$date) 
 
 cut_off <- 0.25
 
