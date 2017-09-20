@@ -6,8 +6,8 @@ library(lubridate)
 library(ggplot2)
 library(ggthemes)
 library(foreach)
-df_btc <- jsonlite::fromJSON("http://coincap.io/history/BTC")
-as.POSIXct(test$market_cap[, 1]/1000, origin = "1970-01-01 00:00.000", tz = "UTC")
+#df_btc <- jsonlite::fromJSON("http://coincap.io/history/BTC")
+#as.POSIXct(test$market_cap[, 1]/1000, origin = "1970-01-01 00:00.000", tz = "UTC")
 Sys.setlocale("LC_TIME", "en_US.UTF-8")
 
 download_coincap_one_currency <- function(symbol) {
@@ -32,10 +32,8 @@ get_coincap_series <- function (symbols) {
 }
 
 currencies <- c("BTC", "IOT", "ETH", "BCH", "XRP", "LTC", "DASH", "XEM", "XMR", "ETC", "NEO", "OMG", "LSK", "QTUM", "STRAT",
-                "USDT", "ZEC", "WAVES", "ARK", "EOS", "STEEM", "MAID", "BCN")
-
-currencies <- c("BTC", "IOT", "ETH", "BCH", "XRP", "LTC", "DASH", "XEM", "XMR", "ETC", "NEO", "OMG", "LSK", "QTUM", "STRAT",
                 "USDT", "ZEC", "WAVES", "ARK", "EOS", "STEEM", "MAID", "EOS", "BAT", "BTS", "REP", "PAY", "DCR", "KMD", "VERI", "HSR", "PIVX", "NXS")
+
 df_daily <- get_coincap_series(currencies)
 
 #get_coincap_series("NXS")
@@ -177,13 +175,15 @@ df_joint <-
 df_joint %>%
   ggplot() +
   geom_line(aes(x = date, y = index)) +
-  theme_few()
+  ylim(0,600) +
+  theme_few() +
+  ggtitle("25")
 
 
 
 
 
-
+# alt ----------------------------------------------------------------------------------------------------------------
 
 
 
