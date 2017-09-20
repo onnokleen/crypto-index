@@ -33,4 +33,12 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 
+# Temporary files created by LaTeX
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.synctex.gz
+
 .DS_Store
