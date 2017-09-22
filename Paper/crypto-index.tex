@@ -33,7 +33,7 @@ Let $t$ denote time index starting at time $t_0$, $t = t_0, t_1, t_2, \dots$. An
 
 $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor} $$
 
-\begin{enumerate} 
+\begin{enumerate}
   \item Calculate each coins market share $s_{i,t}$.
   \item Truncate market shares by maximum $\bar s$: $\bar s_{i,t} = \max\{ s_{i,t}, \bar s\}$
   \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$. Note that $w_{i,t}$ is afterwards greater than $0.25$ due to rescaling.
@@ -44,7 +44,7 @@ $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor}
 
 \subsection{Questions to address}
 \begin{itemize}
-  \item Why 20 currencies? 19-09-2017 14:41 20th market capitalisation (STEEM) is only \$286.382.955	and 24 hour trading volume of \$686.
+  \item Why 20 currencies? 19-09-2017 14:41 20th market capitalization (STEEM) is only \$286.382.955 and 24 hour trading volume of \$686. Further, the 20 currencies with the highest market capitalization have a share of 92 \% of the total market capitalization and a 24 hour trading volume of 94 \% of the total trading volume of September 22, 2017. If we add another 30 currencies, the 24 hour trading volume increases by 2 percentage points where we think that a smaller but better traceable index outweighs an index with a larger but more volatile currency base.
   \item ``Dead coins'' a problem?
   \item If there is a split (like Bitcoin), new currency is part of Lykke 20 but is part of constituents-check at the end of the week.
   \item Basis: 100 Punkte?
@@ -61,7 +61,7 @@ $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor}
 \subsection{Features}
 
 \begin{itemize}
-  \item 
+  \item
   \item Constituent changes each week. Maybe Friday? Maybe based on trade volume in last 7 days? Good against ``dead coins''.
 \end{itemize}
 
