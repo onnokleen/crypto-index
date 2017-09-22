@@ -40,5 +40,7 @@ vignettes/*.pdf
 *.fdb_latexmk
 *.out
 *.synctex.gz
+*.bbl
+*.blg
 
 .DS_Store
