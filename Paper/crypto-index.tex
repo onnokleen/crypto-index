@@ -19,6 +19,8 @@ Some Text.\footnote{Code and .tex-files can be found at \href{https://github.com
 
 We focus on weighted average but have maximum weights
 
+\cite{Trimborn2016}
+
 \subsection{Definition}
 
 Let $t$ denote time index starting at time $t_0$, $t = t_0, t_1, t_2, \dots$. And let $\mathcal{C}_t$ denote the set of coins that are traded at time $t$.
@@ -31,7 +33,7 @@ Let $t$ denote time index starting at time $t_0$, $t = t_0, t_1, t_2, \dots$. An
 
 $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor} $$
 
-\begin{enumerate}
+\begin{enumerate} 
   \item Calculate each coins market share $s_{i,t}$.
   \item Truncate market shares by maximum $\bar s$: $\bar s_{i,t} = \max\{ s_{i,t}, \bar s\}$
   \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$. Note that $w_{i,t}$ is afterwards greater than $0.25$ due to rescaling.
@@ -74,5 +76,8 @@ Something nice to illustrate:
 \begin{itemize}
   \item Volatility in August (Bitcoin-split versus July). Show new composition after split.
 \end{itemize}
+
+\bibliographystyle{ecca}
+\bibliography{crypto-index.bib}
 
 \end{document}
