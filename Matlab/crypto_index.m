@@ -53,7 +53,7 @@ plot(df.date(df.symbol=='BTC'),df.share20_market_cap(df.symbol=='BTC'))
 figure('Name','Lykke20 vs Lykke20+')
 plot(df.date(df.symbol=='BTC'),df.idx20(df.symbol=='BTC'))
 hold on
-plot(df.date(df.symbol=='BTC'),df.idx(df.symbol=='BTC'))
+plot(df.date(df.symbol=='BTC'&df.date>='2017-07-16'),df.idx(df.symbol=='BTC'&df.date>='2017-07-16'))
 
 
 %t = 1;
