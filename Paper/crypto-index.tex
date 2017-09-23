@@ -3,9 +3,12 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bbm}
+\usepackage{booktabs}
 \usepackage{natbib}
 \usepackage{color}
 \usepackage{caption}
+\newcommand\fnote[1]{\captionsetup{font=scriptsize}\caption*{\textsl{Note:} #1}}
+\newcommand\fnotes[1]{\captionsetup{font=scriptsize}\caption*{\textsl{Notes:} #1}}
 \usepackage{rotating}
 \usepackage{hyperref}
 
@@ -13,13 +16,17 @@
 \author{Onno Kleen \and Christopher Zuber}
 \begin{document}
 \maketitle
-\section{Index}
+\section{Outline}
+
+Our index Lykke Crypto Index 20 (LCI 20) is a weighted average of current market capitalization.
 
 Some Text.\footnote{Code and .tex-files can be found at \href{https://github.com/onnokleen/crypto-index}{https://github.com/onnokleen/crypto-index}}
-
+ 
 We focus on weighted average but have maximum weights
 
 \cite{Trimborn2016}
+
+Perfect for ETFs: An equal-quantity portfolio with $q_{i,t} = c$, $c \in \mathbb{R}$, is a one-to-one replication of our LCI (20). Perfect for building ETFs - no rebalancing costs.
 
 \subsection{Definition}
 
@@ -32,6 +39,13 @@ Let $t$ denote time index starting at time $t_0$, $t = t_0, t_1, t_2, \dots$. An
 \end{itemize}
 
 $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor} $$
+
+One disadvantage of the real-time re-weighting is that 
+
+\subsection{Addressing splits}\label{subseq:split_smoothing}
+For anticipated splits/forks we propose an adaptive smoothing technique for addressing ``insane'' price movements in direct aftermath. 
+
+\subsection{Calculating LCI 20}
 
 \begin{enumerate}
   \item Calculate each coins market share $s_{i,t}$.
@@ -52,6 +66,10 @@ $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor}
   \item Maximal weight maybe 20\%? DAX: Maximum weight 10\%.
 \end{itemize}
 
+Wikipedia:  In general, the large holdings of founding shareholders, corporate cross-holdings, and government holdings in partially privatized companies are excluded when calculating the size of a public float.
+
+https://www.coindesk.com/rethinking-bitcoin-market-cap/: In 2014, NVIDIA engineer John Ratcliff theorized that approximately 30\% of the current bitcoin supply is made up of ``zombie'' bitcoins that have been inactive for more than a year This number includes bitcoins connected to inaccessible wallets, government-seized bitcoins, ``burned'' bitcoins and bitcoins abandoned during the early days of bitcoins, including Nakamoto's mythical stash of over a million bitcoins.
+
 \subsection{How does it work in other indices}
 
 \begin{itemize}
@@ -65,6 +83,27 @@ $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor}
   \item Constituent changes each week. Maybe Friday? Maybe based on trade volume in last 7 days? Good against ``dead coins''.
 \end{itemize}
 
+\begin{table*}
+\caption{Table explaining differences: proposal vs.\ example}
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{ccc}
+  Issue & Our Proposal & Example \\
+  \midrule
+  Frequency & Real-time & Daily \\
+  Split-smoothing & See Subsection \ref{subseq:split_smoothing} & Not necessary due to daily data\\
+  Public float & Only use coins that have been traded the last 4 years - weekly updated (real-time tracking difficult) & nothing \\
+  ``Zombie coins'' & Only use coins that have been traded the last 4 years & only use 0.30\%\\
+\bottomrule
+\end{tabular}
+}
+\fnotes{In this table differences in implementation of our example and our actual proposal are reported.}
+\end{table*}
+
+
+
+
+
 
 \section{Example}
 
@@ -76,6 +115,8 @@ Something nice to illustrate:
 \begin{itemize}
   \item Volatility in August (Bitcoin-split versus July). Show new composition after split.
 \end{itemize}
+
+\section{Splits}
 
 \bibliographystyle{ecca}
 \bibliography{crypto-index.bib}
