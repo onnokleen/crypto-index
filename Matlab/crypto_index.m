@@ -47,15 +47,15 @@ for t = 1:length(date)
 end
 
 % Working plots
-figure('Name','Dominance Index')
-plot(df.date(df.symbol=='BTC'),df.share_market_cap(df.symbol=='BTC'))
-hold on
-plot(df.date(df.symbol=='BTC'),df.share20_market_cap(df.symbol=='BTC'))
+% figure('Name','Dominance Index')
+% plot(df.date(df.symbol=='BTC'),df.share_market_cap(df.symbol=='BTC'))
+% hold on
+% plot(df.date(df.symbol=='BTC'),df.share20_market_cap(df.symbol=='BTC'))
 
-figure('Name','Lykke20 vs Lykke20+')
-plot(df.date(df.symbol=='BTC'),df.idx20(df.symbol=='BTC'))
-hold on
-plot(df.date(df.symbol=='BTC'&df.date>='2017-07-16'),df.idx(df.symbol=='BTC'&df.date>='2017-07-16'))
+% figure('Name','Lykke20 vs Lykke20+')
+% plot(df.date(df.symbol=='BTC'),df.idx20(df.symbol=='BTC'))
+% hold on
+% plot(df.date(df.symbol=='BTC'&df.date>='2017-07-16'),df.idx(df.symbol=='BTC'&df.date>='2017-07-16'))
 
 
 
