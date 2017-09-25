@@ -172,6 +172,37 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_bch_split.eps')
 
 
+% Plot share of currencies
+clist = {'BTC','ETH','BCH','XRP','LTC'};
+dlist = {'2017-01-01','2017-02-01', ...
+         '2017-03-01','2017-04-01','2017-05-01','2017-06-01', ...
+         '2017-07-01','2017-08-01','2017-09-01'};
+
+A = zeros(length(dlist),length(clist)+1);
+for i = 1:length(dlist)
+    for j = 1:length(clist)
+        a_ij = df.share_market_cap(df.symbol==clist{j}&df.date==dlist{i});
+        if isempty(a_ij)==0
+            A(i,j) = a_ij;
+        end
+    end
+end
+A(:,length(clist)+1) = ones(length(dlist),1) - sum(A(:,1:length(clist)),2);
+
+f4 = figure('Name','Share of Currencies');
+bar(datetime(dlist,'InputFormat','yyyy-MM-dd'),A,'stacked')
+lgnd = legend({'BTC','ETH','BCH','XRP','LTC','Other'},'location','EastOutside');
+ax = gca;
+ax.TickLength = [0 0];
+ax.YTick = [0:0.25:1];
+ax.XTickLabel = {'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'};
+ax.XTickLabelRotation = 0;
+ax.FontSize = 8;
+
+% Resize figure and export to eps
+set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
+print('-depsc','../bld/figures/currency_shares.eps')
+
 
 
 
