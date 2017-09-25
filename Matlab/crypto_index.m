@@ -98,6 +98,39 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20.eps')
 
 
+% Plot index vs Bitcoin price
+f2 = figure('Name','LCI20 vs Bitcoin');
+[ax,h1,h2] = plotyy(date, df.idx20(df.symbol=='BTC'), ...
+    date,df.price(df.symbol=='BTC'));
+
+% Formatting commands
+axis 'tight'
+lgnd = legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
+% Change linewidth, color and style of time series
+set(h1,'linewidth', linewdth,'color','k')
+set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
+% Format x axes
+set(ax(1),'xcolor','k','ycolor','k','fontsize',fnt_size,'tickdir','out')
+set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
+    'tickdir','out','xticklabel',[],'xtick',[])
+linkaxes(ax,'x');
+% Format y axes
+y1sr_lim  = [0, 3000];% Lower and upper bound of y1 axis
+y2sr_lim  = [0, 5500];% Lower and upper bound of y2 axis
+ylim(ax(1),y1sr_lim)
+set(ax(1),'ytick',y1sr_lim(1):500:y1sr_lim(2),'box','off')
+ylim(ax(2),y2sr_lim)
+set(ax(2),'ytick',y2sr_lim(1):500:y2sr_lim(2),'box','off')
+% Manually include top rule
+hold on
+h3 = line(date,y1sr_lim(2)*ones(1,length(date)));
+set(h3,'linewidth',0.5,'color','k')
+
+% Resize figure and export to eps
+set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
+print('-depsc','../bld/figures/lci20_vs_btc.eps')
+
+
 % Plot index evolution during split
 f3 = figure('Name','LCI20 during Split');
 sdate = '2017-07-01';
@@ -139,37 +172,7 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_bch_split.eps')
 
 
-% Plot index vs Bitcoin price
-f4 = figure('Name','LCI20 vs Bitcoin');
-[ax,h1,h2] = plotyy(date, df.idx20(df.symbol=='BTC'), ...
-    date,df.price(df.symbol=='BTC'));
 
-% Formatting commands
-axis 'tight'
-lgnd = legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
-% Change linewidth, color and style of time series
-set(h1,'linewidth', linewdth,'color','k')
-set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
-% Format x axes
-set(ax(1),'xcolor','k','ycolor','k','fontsize',fnt_size,'tickdir','out')
-set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
-    'tickdir','out','xticklabel',[],'xtick',[])
-linkaxes(ax,'x');
-% Format y axes
-y1sr_lim  = [0, 3000];% Lower and upper bound of y1 axis
-y2sr_lim  = [0, 5500];% Lower and upper bound of y2 axis
-ylim(ax(1),y1sr_lim)
-set(ax(1),'ytick',y1sr_lim(1):500:y1sr_lim(2),'box','off')
-ylim(ax(2),y2sr_lim)
-set(ax(2),'ytick',y2sr_lim(1):500:y2sr_lim(2),'box','off')
-% Manually include top rule
-hold on
-h3 = line(date,y1sr_lim(2)*ones(1,length(date)));
-set(h3,'linewidth',0.5,'color','k')
-
-% Resize figure and export to eps
-set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
-print('-depsc','../bld/figures/lci20_vs_btc.eps')
 
 
 
