@@ -43,4 +43,7 @@ vignettes/*.pdf
 *.bbl
 *.blg
 
+# Build directory
+bld
+
 .DS_Store
