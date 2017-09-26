@@ -95,6 +95,7 @@ set(h3,'linewidth',0.5,'color','k')
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20.eps')
+print('-depsc','../Paper/figs/lci20.eps')
 
 
 
@@ -168,6 +169,7 @@ set(h3,'linewidth',0.5,'color','k')
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_vs_btc_norm.eps')
+print('-depsc','../Paper/figs/lci20_vs_btc_norm.eps')
 
 
 
@@ -219,6 +221,7 @@ set(h4,'linewidth',0.5,'color','k')
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_bch_split.eps')
+print('-depsc','../Paper/figs/lci20_bch_split.eps')
 
 
 
@@ -253,3 +256,4 @@ ax.FontSize = 8;
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/currency_shares.eps')
+print('-depsc','../Paper/figs/currency_shares.eps')
