@@ -29,7 +29,12 @@ We address crypto-currency-specific problems as there are
 For example, the distinct market behavior around currency-splits is addressed by adaptively smoothing prices of affected assets.
 
 In comparison to \cite{Trimborn2016}, we choose keeping the amount of assets included to be fixed.
-This has the advantage of interpreting assets included being among the 20th most ``important'' crypto-assets.
+This has the advantage of interpreting currencies included being among the 20th most ``important'' crypto-assets.
+
+We procede as follows: 
+First, notation and our index calculation are introduced. 
+Second, we discuss pros and cons of our method.
+Third, a reduced-form example of our index on daily data is presented.
 
 \subsection{Definition}
 
@@ -42,8 +47,9 @@ Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a m
 
 \begin{figure}%
     \centering%
-    \includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
     \caption{Evolution of LCI20}\label{f:lci20}%
+    %\includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
+    \fnotes{Put notes here.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
@@ -53,30 +59,31 @@ Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a m
 In stock market indices, only shares that are actively tradable, called the ``public float'' are included in calculating those indices by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
 As there is no public recording to which person or institutions long-term
 
-$$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor} $$
+Our index can be interpreted as a standardized ratio of weighted sums relative to its initial value. 
 
-One disadvantage of the real-time re-weighting is that
+\subsection{Six steps for calculating LCI 20}
 
-\subsection{Addressing splits}\label{subseq:split_smoothing}
-For anticipated splits/forks we propose an adaptive smoothing technique for addressing ``insane'' price movements in direct aftermath.
-
-\subsection{Calculating LCI 20}
+Our index is defined as a standardized ratio of weighted sums relative to its initial value:
+\begin{equation}
+  \text{LCI20}_t = 100 * \frac{\widetilde{\text{LCI20}}_t}{\widetilde{\text{LCI20}}_{t_0}}
+\end{equation}
 
 \begin{enumerate}
   \item Calculate each coins market share $s_{i,t}$.
   \item Truncate market shares by maximum $\bar s$: $\bar s_{i,t} = \max\{ s_{i,t}, \bar s\}$
-  \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$. Note that $w_{i,t}$ is afterwards greater than $0.25$ due to rescaling.
-  \item $$\widetilde{\text{LCI20}}_t = \sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}$$
+  \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$. %Note that $w_{i,t}$ is afterwards greater than $0.25$ due to rescaling.
+  \item Calculate the weighted average $$\widetilde{\text{LCI20}}_t = \sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}$$
   \item The initial value of the weighted sum is given by $$\widetilde{\text{LCI20}}_{t_0} = \sum_{i \in \mathcal{C}_{t}} w_{i,t_0} c_{i,t_0}$$
-  \item $Divisor = \widetilde{\text{LCI20}}_{t_0} * 100$
+  \item $Divisor = \widetilde{\text{LCI20}}_{t_0}$
 \end{enumerate}
 
 
 \begin{figure}%
     \centering%
-    \includegraphics[width=\textwidth]{../bld/figures/lci20_vs_btc.eps}%
-    \caption{LCI20 vs.\ Bitcoin price}\label{f:lci20vsBTC}%
+    \caption{LCI20 vs.\ bitcoin price}\label{f:lci20vsBTC}%
+    %\includegraphics[width=\textwidth]{../bld/figures/lci20_vs_btc.eps}%
     % \medskip\newline% Separate caption and notes
+    \fnotes{Put notes here.}
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
     % \end{minipage}
@@ -84,13 +91,19 @@ For anticipated splits/forks we propose an adaptive smoothing technique for addr
 
 \begin{figure}%
     \centering%
-    \includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
+    %\includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
     \caption{Currency shares along 2017}\label{f:curshares}%
+    %\includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
     % \medskip\newline% Separate caption and notes
+    \fnotes{Some notes}
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
     % \end{minipage}
 \end{figure}
+
+\subsection{Addressing splits}\label{subseq:split_smoothing}
+For anticipated splits/forks we propose an adaptive smoothing technique for addressing ``insane'' price movements in direct aftermath.
+We propose to use one-hour averaged prices for currencies that are anticipated to split when calculating LCI20 beginning one day in advance and ending one day after split 
 
 
 \subsection{Questions to address}
@@ -168,7 +181,7 @@ Therefore, private investors are usually advised not to trade their old coins or
 
 \begin{figure}%
     \centering%
-    \includegraphics[width=\textwidth]{../bld/figures/lci20_bch_split.eps}%
+    %\includegraphics[width=\textwidth]{../bld/figures/lci20_bch_split.eps}%
     \caption{LCI20 at Bitcoin Cash split}\label{f:split}%
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
