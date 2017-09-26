@@ -64,6 +64,7 @@ end
 
 
 %% Plot index evolution
+
 f1 = figure('Name','LCI20 and Bitcoin Dominance');
 [ax,h1,h2] = plotyy(date,df.idx20(df.symbol=='BTC'), ...
     date,df.share_market_cap(df.symbol=='BTC'));
@@ -98,6 +99,7 @@ print('-depsc','../bld/figures/lci20.eps')
 
 
 %% Plot index vs Bitcoin price
+
 f2 = figure('Name','LCI20 vs Bitcoin');
 [ax,h1,h2] = plotyy(date, df.idx20(df.symbol=='BTC'), ...
     date,df.price(df.symbol=='BTC'));
@@ -132,6 +134,7 @@ print('-depsc','../bld/figures/lci20_vs_btc.eps')
 
 
 %% Plot normalized index vs Bitcoin price
+
 f2b = figure('Name','Normalized LCI20 vs Bitcoin');
 [ax,h1,h2] = plotyy(...
     date, df.idx20(df.symbol=='BTC') ./ ...
@@ -169,6 +172,7 @@ print('-depsc','../bld/figures/lci20_vs_btc_norm.eps')
 
 
 %% Plot index evolution during split
+
 f3 = figure('Name','LCI20 during Split');
 sdate = '2017-07-01';
 edate = '2017-08-26';
@@ -219,6 +223,7 @@ print('-depsc','../bld/figures/lci20_bch_split.eps')
 
 
 %% Plot share of currencies
+
 clist = {'BTC','ETH','BCH','XRP','LTC'};
 dlist = {'2017-01-01','2017-02-01', ...
          '2017-03-01','2017-04-01','2017-05-01','2017-06-01', ...
