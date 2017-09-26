@@ -46,4 +46,7 @@ vignettes/*.pdf
 # Build directory
 bld
 
+# Matlab's autosave files
+*.asv
+
 .DS_Store
