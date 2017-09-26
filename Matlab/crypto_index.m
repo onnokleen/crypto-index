@@ -39,14 +39,16 @@ df.wprice20 = df.price .* df.share20_market_cap;
 % Calculate indices
 df.idx   = NaN(size(df,1),1);
 df.idx20 = NaN(size(df,1),1);
-
 for t = 1:length(date)
-    day   = df(df.date==date(t),:);
+    day = df(df.date==date(t),:);
     df.idx(df.date==date(t)) = sum(day.wprice);
     df.idx20(df.date==date(t)) = sum(day.wprice20);
 end
 
+
+
 % Working plots
+
 % figure('Name','Dominance Index')
 % plot(df.date(df.symbol=='BTC'),df.share_market_cap(df.symbol=='BTC'))
 % hold on
@@ -129,6 +131,42 @@ set(h3,'linewidth',0.5,'color','k')
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_vs_btc.eps')
+
+
+% Plot normalized index vs Bitcoin price
+f2b = figure('Name','Normalized LCI20 vs Bitcoin');
+[ax,h1,h2] = plotyy(...
+    date, df.idx20(df.symbol=='BTC') ./ ...
+        df.idx20(df.symbol=='BTC'&df.date=='2016-11-01')*100, ...
+    date, df.price(df.symbol=='BTC') ./ ...
+        df.price(df.symbol=='BTC'&df.date=='2016-11-01')*100);
+
+% Formatting commands
+axis 'tight'
+legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
+% Change linewidth, color and style of time series
+set(h1,'linewidth', linewdth,'color','k')
+set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
+% Format x axes
+set(ax(1),'xcolor','k','ycolor','k','fontsize',fnt_size,'tickdir','out')
+set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
+    'tickdir','out','xticklabel',[],'xtick',[])
+linkaxes(ax,'x');
+% Format y axes
+y1sr_lim  = [0, 700];% Lower and upper bound of y1 axis
+y2sr_lim  = [0, 700];% Lower and upper bound of y2 axis
+ylim(ax(1),y1sr_lim)
+set(ax(1),'ytick',y1sr_lim(1):100:y1sr_lim(2),'box','off')
+ylim(ax(2),y2sr_lim)
+set(ax(2),'ytick',y2sr_lim(1):100:y2sr_lim(2),'box','off')
+% Manually include top rule
+hold on
+h3 = line(date,y1sr_lim(2)*ones(1,length(date)));
+set(h3,'linewidth',0.5,'color','k')
+
+% Resize figure and export to eps
+set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
+print('-depsc','../bld/figures/lci20_vs_btc_norm.eps')
 
 
 % Plot index evolution during split
