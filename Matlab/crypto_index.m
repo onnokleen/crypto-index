@@ -72,7 +72,7 @@ f1 = figure('Name','LCI20 and Bitcoin Dominance');
 
 % Formatting commands
 axis 'tight'
-lgnd = legend({'LCI20','Bitcoin Share'},'location','SouthWest','box','off');
+legend({'LCI20','Bitcoin Share'},'location','SouthWest','box','off');
 % Change linewidth, color and style of time series
 set(h1,'linewidth', linewdth,'color','k')
 set(h2,'linewidth', linewdth,'color','r','LineStyle','--')
@@ -105,7 +105,7 @@ f2 = figure('Name','LCI20 vs Bitcoin');
 
 % Formatting commands
 axis 'tight'
-lgnd = legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
+legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
 % Change linewidth, color and style of time series
 set(h1,'linewidth', linewdth,'color','k')
 set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
@@ -144,7 +144,7 @@ bch_p = [NaN(size(date(date>=sdate&date<='2017-08-01'),1),1); ...
 
 % Formatting commands
 axis 'tight'
-lgnd = legend({'LCI20','Bitcoin Price','Bitcoin Cash Price'},'location','NorthWest','box','off');
+legend({'LCI20','Bitcoin Price','Bitcoin Cash Price'},'location','NorthWest','box','off');
 % Change linewidth, color and style of time series
 set(h1,'linewidth', linewdth,'color','k')
 set(h2(1),'linewidth', linewdth,'color','b','LineStyle','--')
@@ -195,7 +195,7 @@ bar(datetime(dlist,'InputFormat','yyyy-MM-dd'),A,'stacked')
 lgnd = legend({'BTC','ETH','BCH','XRP','LTC','Other'},'location','EastOutside');
 ax = gca;
 ax.TickLength = [0 0];
-ax.YTick = [0:0.25:1];
+ax.YTick = 0:0.25:1;
 ax.XTickLabel = {'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'};
 ax.XTickLabelRotation = 0;
 ax.FontSize = 8;
