@@ -31,8 +31,8 @@ For example, the distinct market behavior around currency-splits is addressed by
 In comparison to \cite{Trimborn2016}, we choose keeping the amount of assets included to be fixed.
 This has the advantage of interpreting currencies included being among the 20th most ``important'' crypto-assets.
 
-We procede as follows: 
-First, notation and our index calculation are introduced. 
+We procede as follows:
+First, notation and our index calculation are introduced.
 Second, we discuss pros and cons of our method.
 Third, a reduced-form example of our index on daily data is presented.
 
@@ -48,7 +48,7 @@ Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a m
 \begin{figure}%
     \centering%
     \caption{Evolution of LCI20}\label{f:lci20}%
-    %\includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
+    \includegraphics[width=\textwidth]{figs/lci20.eps}%
     \fnotes{Put notes here.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
@@ -59,7 +59,7 @@ Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a m
 In stock market indices, only shares that are actively tradable, called the ``public float'' are included in calculating those indices by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
 As there is no public recording to which person or institutions long-term
 
-Our index can be interpreted as a standardized ratio of weighted sums relative to its initial value. 
+Our index can be interpreted as a standardized ratio of weighted sums relative to its initial value.
 
 \subsection{Six steps for calculating LCI 20}
 
@@ -80,10 +80,10 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 
 \begin{figure}%
     \centering%
-    \caption{LCI20 vs.\ bitcoin price}\label{f:lci20vsBTC}%
-    %\includegraphics[width=\textwidth]{../bld/figures/lci20_vs_btc.eps}%
+    \caption{LCI20 vs.\ Bitcoin price}\label{f:lci20vsBTC}%
+    \includegraphics[width=\textwidth]{figs/lci20_vs_btc_norm.eps}%
+    \fnotes{LCI20 and price normalized to 100 in Nov 1, 2016.}
     % \medskip\newline% Separate caption and notes
-    \fnotes{Put notes here.}
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
     % \end{minipage}
@@ -91,11 +91,10 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 
 \begin{figure}%
     \centering%
-    %\includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
     \caption{Currency shares along 2017}\label{f:curshares}%
-    %\includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
-    % \medskip\newline% Separate caption and notes
+    \includegraphics[width=\textwidth]{figs/currency_shares.eps}%
     \fnotes{Some notes}
+    % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
     % \end{minipage}
@@ -103,7 +102,7 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 
 \subsection{Addressing splits}\label{subseq:split_smoothing}
 For anticipated splits/forks we propose an adaptive smoothing technique for addressing ``insane'' price movements in direct aftermath.
-We propose to use one-hour averaged prices for currencies that are anticipated to split when calculating LCI20 beginning one day in advance and ending one day after split 
+We propose to use one-hour averaged prices for currencies that are anticipated to split when calculating LCI20 beginning one day in advance and ending one day after split
 
 
 \subsection{Questions to address}
@@ -181,8 +180,9 @@ Therefore, private investors are usually advised not to trade their old coins or
 
 \begin{figure}%
     \centering%
-    %\includegraphics[width=\textwidth]{../bld/figures/lci20_bch_split.eps}%
+    \includegraphics[width=\textwidth]{figs/lci20_bch_split.eps}%
     \caption{LCI20 at Bitcoin Cash split}\label{f:split}%
+    \fnotes{LCI20 and prices normalized to 100 in Aug 2, 2017.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
