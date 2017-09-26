@@ -42,6 +42,7 @@ vignettes/*.pdf
 *.synctex.gz
 *.bbl
 *.blg
+*eps-converted-to.pdf
 
 # Build directory
 bld
