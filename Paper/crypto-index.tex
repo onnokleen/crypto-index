@@ -9,13 +9,14 @@
 \usepackage{caption}
 \newcommand\fnote[1]{\captionsetup{font=scriptsize}\caption*{\textsl{Note:} #1}}
 \newcommand\fnotes[1]{\captionsetup{font=scriptsize}\caption*{\textsl{Notes:} #1}}
-\usepackage{rotating}
+\usepackage{float, afterpage, rotating, graphicx}% Including fig and tab
+\usepackage{epstopdf}% Convert eps to pdf, graphicx needs to be loaded before
 \usepackage{hyperref}
 
 \title{Whitepaper: LCI 20}
 \author{
-Onno Kleen\thanks{Heidelberg University, Department of Economics, \href{mailto:onno.kleen@awi.uni-heidelberg.de}{onno.kleen@awi.uni-heidelberg.de}} 
-\and 
+Onno Kleen\thanks{Heidelberg University, Department of Economics, \href{mailto:onno.kleen@awi.uni-heidelberg.de}{onno.kleen@awi.uni-heidelberg.de}}
+\and
 Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{mailto:christopher.zuber@awi.uni-heidelberg.de}{christopher.zuber@awi.uni-heidelberg.de}}
 }
 \begin{document}
@@ -24,7 +25,7 @@ Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{m
 
 We propose the Lykke Crypto Index 20 (LCI 20) to be a weighted average of the 20 largest crypto currencies' market capitalization.\footnote{Code and .tex-files can be found at \href{https://github.com/onnokleen/crypto-index}{https://github.com/onnokleen/crypto-index}}
 The purpose of our index is to closely follow the value of crypto-currencies in comparison to the US dollar.
-We address crypto-currency-specific problems as there are 
+We address crypto-currency-specific problems as there are
 For example, the distinct market behavior around currency-splits is addressed by adaptively smoothing prices of affected assets.
 
 In comparison to \cite{Trimborn2016}, we choose keeping the amount of assets included to be fixed.
@@ -32,15 +33,25 @@ This has the advantage of interpreting assets included being among the 20th most
 
 \subsection{Definition}
 
-Let $t$ denote our (possibly continuous) time index starting at time $t_0$. 
+Let $t$ denote our (possibly continuous) time index starting at time $t_0$.
 Moreover, $\mathcal{C}_t \in \mathbb{N}$ is the set of coins that are tradable at time $t$ across $M \in \mathbb{N}$ relevant market places for crypto-assets.
 The price of asset $i$ at time $t$ is calculated as the mean of the bid-ask spread's midpoint across all $M$ markets.
 Quantity $q_{i,t}$ denotes the overall number of currently mined shares/items of asset $i$ at time $t$.
 Last, we need a measure of market capitalization $c_{i,t}$.
 Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a more vague term.
 
+% \begin{figure}%
+%     \centering%
+%     \includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
+%     \caption{Evolution of LCI20}\label{f:lci20}%
+%     % \medskip\newline% Separate caption and notes
+%     % \begin{minipage}{\textwidth}
+%         % {\scriptsize \textit{Note:} Put notes here.\par}
+%     % \end{minipage}
+% \end{figure}
+
 In stock market indices, only shares that are actively tradable, called the ``public float'' are included in calculating those indices by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
-As there is no public recording to which person or institutions long-term 
+As there is no public recording to which person or institutions long-term
 
 $$ \text{LCI20}_t = \frac{\sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}}{Divisor} $$
 
@@ -114,7 +125,7 @@ However, we want our definition of the LCI 20 to be ``future-proof'' and expect 
 
 \subsection{Data}
 
-We download daily closing prices and market capitalization from \href{https://coincap.com}{coincap.com} via their Rest API. 
+We download daily closing prices and market capitalization from \href{https://coincap.com}{coincap.com} via their Rest API.
 Our data set includes up to x different cryptocurrencies listed on \href{https://coincap.com}{coincap.com} in between .2017 and 19.09.2017.\footnote{Currencies are included if they were among the currencies with the largest market capitalization at \dots}
 
 
@@ -125,15 +136,15 @@ Something nice to illustrate:
 
 \section{Splits}
 
-The volatility of the index increases in times shortly before and after a split. 
-For example, the index dropped on August 2, 2017, the day after the hard fork of Bitcoin Cash by $-12.7$ \% which is due to the price drop of Bitcoin ($-5$ \%) and the lower price of Bitcoin Cash (roughly 1/6 of Bitcoin). 
-At this point, investors which held Bitcoin, get the same amount of Bitcoin Cash. 
-However, both currencies share the same transaction history. 
-If one incautiously pushes now a transaction containing only old coins to the wrong transaction chain, one will loese the pushed value in both currencies. 
+The volatility of the index increases in times shortly before and after a split.
+For example, the index dropped on August 2, 2017, the day after the hard fork of Bitcoin Cash by $-12.7$ \% which is due to the price drop of Bitcoin ($-5$ \%) and the lower price of Bitcoin Cash (roughly 1/6 of Bitcoin).
+At this point, investors which held Bitcoin, get the same amount of Bitcoin Cash.
+However, both currencies share the same transaction history.
+If one incautiously pushes now a transaction containing only old coins to the wrong transaction chain, one will loese the pushed value in both currencies.
 Therefore, private investors are usually advised not to trade their old coins or newly gained currency in the days after a split but to wait until it is settled if the new currency becomes accepted.
 
 
 \bibliographystyle{ecca}
-\bibliography{crypto-index.bib}
+\bibliography{crypto-index}
 
 \end{document}
