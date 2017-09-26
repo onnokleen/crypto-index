@@ -4,13 +4,16 @@ clear; close all
 if ~exist('../bld','dir'); mkdir('../bld'); end
 if ~exist('../bld/figures','dir'); mkdir('../bld/figures'); end
 
+% Global settings
+fnt_size = 8;% Font size
+linewdth = 1.2;% linewidth
+
+
 df = readtable('df_index.csv');
 df = df(df.date>='2016-11-01',:);
 df.symbol = categorical(df.symbol);
-
 % Re-sort by (1st) date, (2nd) market cap
 df = sortrows(df,{'date','market_cap'},{'ascend','descend'});
-
 % Get available dates
 date = unique(df.date);
 
@@ -46,7 +49,6 @@ for t = 1:length(date)
 end
 
 
-
 % Working plots
 
 % figure('Name','Dominance Index')
@@ -61,13 +63,7 @@ end
 
 
 
-%% Final plots
-
-fnt_size = 8;% Font size
-linewdth = 1.2;% linewidth
-
-
-% Plot index evolution
+%% Plot index evolution
 f1 = figure('Name','LCI20 and Bitcoin Dominance');
 [ax,h1,h2] = plotyy(date,df.idx20(df.symbol=='BTC'), ...
     date,df.share_market_cap(df.symbol=='BTC'));
@@ -100,7 +96,8 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20.eps')
 
 
-% Plot index vs Bitcoin price
+
+%% Plot index vs Bitcoin price
 f2 = figure('Name','LCI20 vs Bitcoin');
 [ax,h1,h2] = plotyy(date, df.idx20(df.symbol=='BTC'), ...
     date,df.price(df.symbol=='BTC'));
@@ -133,7 +130,8 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_vs_btc.eps')
 
 
-% Plot normalized index vs Bitcoin price
+
+%% Plot normalized index vs Bitcoin price
 f2b = figure('Name','Normalized LCI20 vs Bitcoin');
 [ax,h1,h2] = plotyy(...
     date, df.idx20(df.symbol=='BTC') ./ ...
@@ -169,7 +167,8 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_vs_btc_norm.eps')
 
 
-% Plot index evolution during split
+
+%% Plot index evolution during split
 f3 = figure('Name','LCI20 during Split');
 sdate = '2017-07-01';
 edate = '2017-08-26';
@@ -211,7 +210,8 @@ set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
 print('-depsc','../bld/figures/lci20_bch_split.eps')
 
 
-% Plot share of currencies
+
+%% Plot share of currencies
 clist = {'BTC','ETH','BCH','XRP','LTC'};
 dlist = {'2017-01-01','2017-02-01', ...
          '2017-03-01','2017-04-01','2017-05-01','2017-06-01', ...
