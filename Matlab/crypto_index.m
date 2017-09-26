@@ -173,11 +173,15 @@ f3 = figure('Name','LCI20 during Split');
 sdate = '2017-07-01';
 edate = '2017-08-26';
 bch_p = [NaN(size(date(date>=sdate&date<='2017-08-01'),1),1); ...
-    df.price(df.symbol=='BCH'&df.date>=sdate&df.date<=edate)];
-[ax,h1,h2] = plotyy(date(date>=sdate&date<=edate), ...
-    df.idx20(df.symbol=='BTC'&df.date>=sdate&df.date<=edate), ...
+    df.price(df.symbol=='BCH'&df.date>=sdate&df.date<=edate) ./ ...
+        df.price(df.symbol=='BCH'&df.date=='2017-08-02')*100];
+[ax,h1,h2] = plotyy(...
     date(date>=sdate&date<=edate), ...
-    [df.price(df.symbol=='BTC'&df.date>=sdate&df.date<=edate)'; bch_p']);
+        df.idx20(df.symbol=='BTC'&df.date>=sdate&df.date<=edate) ./ ...
+        df.idx20(df.symbol=='BTC'&df.date=='2017-08-02')*100, ...
+    date(date>=sdate&date<=edate), ...
+        [df.price(df.symbol=='BTC'&df.date>=sdate&df.date<=edate)' ./ ...
+        df.price(df.symbol=='BTC'&df.date=='2017-08-02')*100; bch_p']);
 
 % Formatting commands
 axis 'tight'
@@ -193,17 +197,20 @@ set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
 % Format y axes
-y1sr_lim  = [0, 3000];% Lower and upper bound of y1 axis
-y2sr_lim  = [0, 5500];% Lower and upper bound of y2 axis
+y1sr_lim  = [0, 200];% Lower and upper bound of y1 axis
+y2sr_lim  = [0, 200];% Lower and upper bound of y2 axis
 ylim(ax(1),y1sr_lim)
-set(ax(1),'ytick',y1sr_lim(1):500:y1sr_lim(2),'box','off')
+set(ax(1),'ytick',y1sr_lim(1):50:y1sr_lim(2),'box','off')
 ylim(ax(2),y2sr_lim)
-set(ax(2),'ytick',y2sr_lim(1):500:y2sr_lim(2),'box','off')
+set(ax(2),'ytick',y2sr_lim(1):50:y2sr_lim(2),'box','off')
 % Manually include top rule
 hold on
 h3 = line(date(date>=sdate&date<=edate),y1sr_lim(2) * ...
     ones(1,length(date(date>=sdate&date<=edate))));
 set(h3,'linewidth',0.5,'color','k')
+hold on
+h4 = line([date(date=='2017-08-02') date(date=='2017-08-02')], y1sr_lim);
+set(h4,'linewidth',0.5,'color','k')
 
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
