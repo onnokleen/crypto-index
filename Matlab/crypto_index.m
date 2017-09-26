@@ -134,7 +134,7 @@ print('-depsc','../bld/figures/lci20_vs_btc.eps')
 % Plot index evolution during split
 f3 = figure('Name','LCI20 during Split');
 sdate = '2017-07-01';
-edate = '2017-08-31';
+edate = '2017-08-26';
 bch_p = [NaN(size(date(date>=sdate&date<='2017-08-01'),1),1); ...
     df.price(df.symbol=='BCH'&df.date>=sdate&df.date<=edate)];
 [ax,h1,h2] = plotyy(date(date>=sdate&date<=edate), ...
@@ -151,6 +151,7 @@ set(h2(1),'linewidth', linewdth,'color','b','LineStyle','--')
 set(h2(2),'linewidth', linewdth,'color','r','LineStyle','--')
 % Format x axes
 set(ax(1),'xcolor','k','ycolor','k','fontsize',fnt_size,'tickdir','out')
+datetick(ax(1),'x','mmm dd','keepticks')
 set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
