@@ -71,7 +71,7 @@ f1 = figure('Name','LCI20 and Bitcoin Dominance');
 
 % Formatting commands
 axis 'tight'
-legend({'LCI20','Bitcoin Share'},'location','SouthWest','box','off');
+legend({'LCI20 (left)','Bitcoin Share (right)'},'location','SouthWest','box','off');
 % Change linewidth, color and style of time series
 set(h1,'linewidth', linewdth,'color','k')
 set(h2,'linewidth', linewdth,'color','r','LineStyle','--')
@@ -107,7 +107,7 @@ f2 = figure('Name','LCI20 vs Bitcoin');
 
 % Formatting commands
 axis 'tight'
-legend({'LCI20','Bitcoin Price'},'location','NorthWest','box','off');
+legend({'LCI20 (left)','Bitcoin Price (right)'},'location','NorthWest','box','off');
 % Change linewidth, color and style of time series
 set(h1,'linewidth', linewdth,'color','k')
 set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
