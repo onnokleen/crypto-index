@@ -40,15 +40,15 @@ Quantity $q_{i,t}$ denotes the overall number of currently mined shares/items of
 Last, we need a measure of market capitalization $c_{i,t}$.
 Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a more vague term.
 
-% \begin{figure}%
-%     \centering%
-%     \includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
-%     \caption{Evolution of LCI20}\label{f:lci20}%
-%     % \medskip\newline% Separate caption and notes
-%     % \begin{minipage}{\textwidth}
-%         % {\scriptsize \textit{Note:} Put notes here.\par}
-%     % \end{minipage}
-% \end{figure}
+\begin{figure}%
+    \centering%
+    \includegraphics[width=\textwidth]{../bld/figures/lci20.eps}%
+    \caption{Evolution of LCI20}\label{f:lci20}%
+    % \medskip\newline% Separate caption and notes
+    % \begin{minipage}{\textwidth}
+        % {\scriptsize \textit{Note:} Put notes here.\par}
+    % \end{minipage}
+\end{figure}
 
 In stock market indices, only shares that are actively tradable, called the ``public float'' are included in calculating those indices by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
 As there is no public recording to which person or institutions long-term
@@ -70,6 +70,28 @@ For anticipated splits/forks we propose an adaptive smoothing technique for addr
   \item The initial value of the weighted sum is given by $$\widetilde{\text{LCI20}}_{t_0} = \sum_{i \in \mathcal{C}_{t}} w_{i,t_0} c_{i,t_0}$$
   \item $Divisor = \widetilde{\text{LCI20}}_{t_0} * 100$
 \end{enumerate}
+
+
+\begin{figure}%
+    \centering%
+    \includegraphics[width=\textwidth]{../bld/figures/lci20_vs_btc.eps}%
+    \caption{LCI20 vs.\ Bitcoin price}\label{f:lci20vsBTC}%
+    % \medskip\newline% Separate caption and notes
+    % \begin{minipage}{\textwidth}
+        % {\scriptsize \textit{Note:} Put notes here.\par}
+    % \end{minipage}
+\end{figure}
+
+\begin{figure}%
+    \centering%
+    \includegraphics[width=\textwidth]{../bld/figures/currency_shares.eps}%
+    \caption{Currency shares along 2017}\label{f:curshares}%
+    % \medskip\newline% Separate caption and notes
+    % \begin{minipage}{\textwidth}
+        % {\scriptsize \textit{Note:} Put notes here.\par}
+    % \end{minipage}
+\end{figure}
+
 
 \subsection{Questions to address}
 \begin{itemize}
@@ -142,6 +164,18 @@ At this point, investors which held Bitcoin, get the same amount of Bitcoin Cash
 However, both currencies share the same transaction history.
 If one incautiously pushes now a transaction containing only old coins to the wrong transaction chain, one will loese the pushed value in both currencies.
 Therefore, private investors are usually advised not to trade their old coins or newly gained currency in the days after a split but to wait until it is settled if the new currency becomes accepted.
+
+
+\begin{figure}%
+    \centering%
+    \includegraphics[width=\textwidth]{../bld/figures/lci20_bch_split.eps}%
+    \caption{LCI20 at Bitcoin Cash split}\label{f:split}%
+    % \medskip\newline% Separate caption and notes
+    % \begin{minipage}{\textwidth}
+        % {\scriptsize \textit{Note:} Put notes here.\par}
+    % \end{minipage}
+\end{figure}
+
 
 
 \bibliographystyle{ecca}
