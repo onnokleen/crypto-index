@@ -50,13 +50,11 @@ for t = 1:length(date)
 end
 df.share20_market_cap = df.share20_mctr;
 
-
-
 % Calculate weighted prices
 df.wprice   = df.price .* df.share_market_cap;
 df.wprice20 = df.price .* df.share20_market_cap;
 
-% Calculate indices
+% Calculate indices and rescale them
 df.idx   = NaN(size(df,1),1);
 df.idx20 = NaN(size(df,1),1);
 for t = 1:length(date)
@@ -64,19 +62,8 @@ for t = 1:length(date)
     df.idx(df.date==date(t)) = sum(day.wprice);
     df.idx20(df.date==date(t)) = sum(day.wprice20);
 end
-
-
-% Working plots
-
-% figure('Name','Dominance Index')
-% plot(df.date(df.symbol=='BTC'),df.share_market_cap(df.symbol=='BTC'))
-% hold on
-% plot(df.date(df.symbol=='BTC'),df.share20_market_cap(df.symbol=='BTC'))
-
-% figure('Name','Lykke20 vs Lykke20+')
-% plot(df.date(df.symbol=='BTC'),df.idx20(df.symbol=='BTC'))
-% hold on
-% plot(df.date(df.symbol=='BTC'&df.date>='2017-07-16'),df.idx(df.symbol=='BTC'&df.date>='2017-07-16'))
+df.idx = df.idx ./ mean(df.idx(df.date==date(1)))*100;
+df.idx20 = df.idx20 ./ mean(df.idx20(df.date==date(1)))*100;
 
 
 
@@ -84,8 +71,7 @@ end
 
 f1 = figure('Name','LCI20 and Bitcoin Dominance');
 [ax,h1,h2] = plotyy(...
-    date,df.idx20(df.symbol=='BTC') ./ ...
-        df.idx20(df.symbol=='BTC'&df.date=='2016-11-01')*100, ...
+    date,df.idx20(df.symbol=='BTC'), ...
     date,df.share_market_cap(df.symbol=='BTC'));
 
 % Formatting commands
@@ -100,7 +86,7 @@ set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
 % Format y axes
-y1sr_lim  = [0, 500];% Lower and upper bound of y1 axis
+y1sr_lim  = [0, 400];% Lower and upper bound of y1 axis
 y2sr_lim  = [0.4, 1];% Lower and upper bound of y2 axis
 ylim(ax(1),y1sr_lim)
 set(ax(1),'ytick',y1sr_lim(1):100:y1sr_lim(2),'box','off')
@@ -121,45 +107,9 @@ print('-depsc','../Paper/figs/lci20.eps')
 %% Plot index vs Bitcoin price
 
 f2 = figure('Name','LCI20 vs Bitcoin');
-[ax,h1,h2] = plotyy(date, df.idx20(df.symbol=='BTC'), ...
-    date,df.price(df.symbol=='BTC'));
-
-% Formatting commands
-axis 'tight'
-legend({'LCI20 (left)','Bitcoin Price (right)'},'location','NorthWest','box','off');
-% Change linewidth, color and style of time series
-set(h1,'linewidth', linewdth,'color','k')
-set(h2,'linewidth', linewdth,'color','b','LineStyle','--')
-% Format x axes
-set(ax(1),'xcolor','k','ycolor','k','fontsize',fnt_size,'tickdir','out')
-set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
-    'tickdir','out','xticklabel',[],'xtick',[])
-linkaxes(ax,'x');
-% Format y axes
-y1sr_lim  = [0, 3000];% Lower and upper bound of y1 axis
-y2sr_lim  = [0, 5500];% Lower and upper bound of y2 axis
-ylim(ax(1),y1sr_lim)
-set(ax(1),'ytick',y1sr_lim(1):500:y1sr_lim(2),'box','off')
-ylim(ax(2),y2sr_lim)
-set(ax(2),'ytick',y2sr_lim(1):500:y2sr_lim(2),'box','off')
-% Manually include top rule
-hold on
-h3 = line(date,y1sr_lim(2)*ones(1,length(date)));
-set(h3,'linewidth',0.5,'color','k')
-
-% Resize figure and export to eps
-set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
-print('-depsc','../bld/figures/lci20_vs_btc.eps')
-
-
-
-%% Plot normalized index vs Bitcoin price
-
-f2b = figure('Name','Normalized LCI20 vs Bitcoin');
 [ax,h1,h2] = plotyy(...
-    date, df.idx20(df.symbol=='BTC') ./ ...
-        df.idx20(df.symbol=='BTC'&df.date=='2016-11-01')*100, ...
-    date, df.price(df.symbol=='BTC') ./ ...
+    date,df.idx20(df.symbol=='BTC'), ...
+    date,df.price(df.symbol=='BTC') ./ ...
         df.price(df.symbol=='BTC'&df.date=='2016-11-01')*100);
 
 % Formatting commands
@@ -187,8 +137,8 @@ set(h3,'linewidth',0.5,'color','k')
 
 % Resize figure and export to eps
 set(gcf, 'PaperPosition', [0.25 2.5 16.0 8.0]);
-print('-depsc','../bld/figures/lci20_vs_btc_norm.eps')
-print('-depsc','../Paper/figs/lci20_vs_btc_norm.eps')
+print('-depsc','../bld/figures/lci20_vs_btc.eps')
+print('-depsc','../Paper/figs/lci20_vs_btc.eps')
 
 
 
