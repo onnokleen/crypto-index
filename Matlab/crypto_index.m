@@ -66,7 +66,9 @@ end
 %% Plot index evolution
 
 f1 = figure('Name','LCI20 and Bitcoin Dominance');
-[ax,h1,h2] = plotyy(date,df.idx20(df.symbol=='BTC'), ...
+[ax,h1,h2] = plotyy(...
+    date,df.idx20(df.symbol=='BTC') ./ ...
+        df.idx20(df.symbol=='BTC'&df.date=='2016-11-01')*100, ...
     date,df.share_market_cap(df.symbol=='BTC'));
 
 % Formatting commands
@@ -81,10 +83,10 @@ set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
 % Format y axes
-y1sr_lim  = [0, 3000];% Lower and upper bound of y1 axis
+y1sr_lim  = [0, 500];% Lower and upper bound of y1 axis
 y2sr_lim  = [0.4, 1];% Lower and upper bound of y2 axis
 ylim(ax(1),y1sr_lim)
-set(ax(1),'ytick',y1sr_lim(1):500:y1sr_lim(2),'box','off')
+set(ax(1),'ytick',y1sr_lim(1):100:y1sr_lim(2),'box','off')
 ylim(ax(2),y2sr_lim)
 set(ax(2),'ytick',y2sr_lim(1):0.2:y2sr_lim(2),'box','off')
 % Manually include top rule
