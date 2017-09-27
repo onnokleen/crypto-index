@@ -23,7 +23,7 @@ Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{m
 \maketitle
 \section{Outline}
 
-We propose the Lykke Crypto Index 20 (LCI 20) to be a weighted average of the 20 largest crypto currencies' market capitalization.\footnote{Code and .tex-files can be found at \href{https://github.com/onnokleen/crypto-index}{https://github.com/onnokleen/crypto-index}}
+We propose the Lykke Crypto Index 20 (LCI 20) to be a weighted average of the 20 largest crypto currencies' market capitalization.\footnote{Code and \LaTeX-files can be found at \href{https://github.com/onnokleen/crypto-index}{https://github.com/onnokleen/crypto-index}}
 The purpose of our index is to closely follow the value of crypto-currencies in comparison to the US dollar.
 We address crypto-currency-specific problems as there are
 For example, the distinct market behavior around currency-splits is addressed by adaptively smoothing prices of affected assets.
@@ -31,7 +31,7 @@ For example, the distinct market behavior around currency-splits is addressed by
 In comparison to \cite{Trimborn2016}, we choose keeping the amount of assets included to be fixed.
 This has the advantage of interpreting currencies included being among the 20th most ``important'' crypto-assets.
 
-We procede as follows:
+We will procede as follows:
 First, notation and our index calculation are introduced.
 Second, we discuss pros and cons of our method.
 Third, a reduced-form example of our index on daily data is presented.
@@ -49,17 +49,22 @@ Whereas $p_{i,t}$ and $q_{i,t}$ are ``hard facts'', market capitalization is a m
     \centering%
     \caption{Evolution of LCI20}\label{f:lci20}%
     \includegraphics[width=\textwidth]{figs/lci20.eps}%
-    \fnotes{Put notes here.}
+    \fnote{In this figure, our daily LCI 20 and the dominance index with respect to bitcoins are depicted \textbf{?? Referenz und Formel f\"ur Dominanzindex??}.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
     % \end{minipage}
 \end{figure}
 
-In stock market indices, only shares that are actively tradable, called the ``public float'' are included in calculating those indices by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
-As there is no public recording to which person or institutions long-term
+Regarding stock markets, only shares that are actively tradable, the ``public float'', are included in calculating indices.
+This is commonly done by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
+As there is no public record, at least for now, to which person or institution shares in cryptocurrencies belong, we propose to use only (partial) coins that have been traded in the last four years.
+Even though the cut-off at four years can be considered to be somewhat arbitrary, it has takes care of another problem when calculating the value of cryptocurrencies: ``zombie coins''.
 
-Our index can be interpreted as a standardized ratio of weighted sums relative to its initial value.
+As a some users lose their personal wallet, e.g.\ by a irreparable hard-drive failures, those coins are typically gone and cannot be restored.\footnote{See, for example \href{https://letstalkbitcoin.com/blog/post/rise-of-the-zombie-bitcoins}{https://letstalkbitcoin.com/blog/post/rise-of-the-zombie-bitcoins}.}
+Hence, one should not use them when calculating market capitalization as there is no one who could sell them at any point in the future.
+
+In the next subsection, we will define the calculation steps of our proposed LCI 20.
 
 \subsection{Six steps for calculating LCI 20}
 
@@ -74,7 +79,6 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
   \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$. %Note that $w_{i,t}$ is afterwards greater than $0.25$ due to rescaling.
   \item Calculate the weighted average $$\widetilde{\text{LCI20}}_t = \sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}$$
   \item The initial value of the weighted sum is given by $$\widetilde{\text{LCI20}}_{t_0} = \sum_{i \in \mathcal{C}_{t}} w_{i,t_0} c_{i,t_0}$$
-  \item $Divisor = \widetilde{\text{LCI20}}_{t_0}$
 \end{enumerate}
 
 
@@ -82,7 +86,7 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
     \centering%
     \caption{LCI20 vs.\ Bitcoin price}\label{f:lci20vsBTC}%
     \includegraphics[width=\textwidth]{figs/lci20_vs_btc_norm.eps}%
-    \fnotes{LCI20 and price normalized to 100 in Nov 1, 2016.}
+    \fnote{In this figure, the LCI20 in comparison to the normalized bitcoin price in Nov 1, 2016 are depicted.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
@@ -93,7 +97,7 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
     \centering%
     \caption{Currency shares along 2017}\label{f:curshares}%
     \includegraphics[width=\textwidth]{figs/currency_shares.eps}%
-    \fnotes{Some notes}
+    \fnotes{\textbf{?? Warum BCH nicht im August ??}}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
@@ -133,20 +137,20 @@ https://www.coindesk.com/rethinking-bitcoin-market-cap/: In 2014, NVIDIA enginee
 \end{itemize}
 
 \begin{table*}
-\caption{Table explaining differences: proposal vs.\ example}
+\caption{Proposal vs.\ example}
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{ccc}
-  Issue & Our Proposal & Example \\
+\begin{tabular}{lll}
+  Issue & Our proposal & Example \\
   \midrule
   Frequency & Real-time & Daily \\
-  Split-smoothing & See Subsection \ref{subseq:split_smoothing} & Not necessary due to daily data\\
-  Public float & Only use coins that have been traded the last 4 years - weekly updated (real-time tracking difficult) & nothing \\
-  ``Zombie coins'' & Only use coins that have been traded the last 4 years & only use 0.30\%\\
+  Split-smoothing & Not necessary due to real-time weighting & Not necessary due to daily data\\
+  Public float & Only use coins that have been traded the last 4 years & Not implemented \\
+  ``Zombie coins'' & Only use coins that have been traded the last 4 years & Only use 0.30\% of coins\\
 \bottomrule
 \end{tabular}
 }
-\fnotes{In this table differences in implementation of our example and our actual proposal are reported.}
+\fnotes{In this table differences in implementation of our example and our actual proposal are reported. Problems addressed in our proposal are reported in the first column, our solution to these in are summarized in the second column and last, we report our reduced-form example's compromise.}
 \end{table*}
 
 \section{Discussion}
@@ -159,8 +163,9 @@ However, we want our definition of the LCI 20 to be ``future-proof'' and expect 
 
 \subsection{Data}
 
-We download daily closing prices and market capitalization from \href{https://coincap.com}{coincap.com} via their Rest API.
-Our data set includes up to x different cryptocurrencies listed on \href{https://coincap.com}{coincap.com} in between .2017 and 19.09.2017.\footnote{Currencies are included if they were among the currencies with the largest market capitalization at \dots}
+We download daily closing prices and market capitalization from \href{https://coincap.com}{\textit{coincap.com}} via their Rest API.
+Our data set includes up to 33 different cryptocurrencies listed on \href{https://coincap.com}{\textit{coincap.com}} in between 26.10.2016 and 19.09.2017.\footnote{Currencies are included if they were among the currencies with the largest market capitalization at \dots}
+We exclude days on which there is no price for Bitcoin or Ethereum.
 
 
 Something nice to illustrate:
@@ -180,9 +185,9 @@ Therefore, private investors are usually advised not to trade their old coins or
 
 \begin{figure}%
     \centering%
-    \includegraphics[width=\textwidth]{figs/lci20_bch_split.eps}%
     \caption{LCI20 at Bitcoin Cash split}\label{f:split}%
-    \fnotes{LCI20 and prices normalized to 100 in Aug 2, 2017.}
+    \includegraphics[width=\textwidth]{figs/lci20_bch_split.eps}%
+    \fnote{In this figure LCI20 and BTC/BCH prices normalized to 100 in Aug 2, 2017 are depicted.}
     % \medskip\newline% Separate caption and notes
     % \begin{minipage}{\textwidth}
         % {\scriptsize \textit{Note:} Put notes here.\par}
