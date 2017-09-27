@@ -24,7 +24,6 @@ date = unique(df.date);
 % Calculate market cap and share for different specification
 df.cum20_market_cap = NaN(size(df,1),1);
 df.share20_market_cap = NaN(size(df,1),1);
-df.idx20c = NaN(size(df,1),1);
 for t = 1:length(date)
     day   = df(df.date==date(t),:);
     day20 = day(1:20,:);
@@ -34,6 +33,24 @@ for t = 1:length(date)
         [day20.market_cap; zeros(size(day,1)-20,1)] ./ ...
         df.cum20_market_cap(df.date==date(t));
 end
+
+% Calculate truncated shares
+cutoff = 0.2;
+truncX = df.share20_market_cap;
+truncX(truncX>cutoff)=cutoff;
+df.share20_mctr = truncX;
+df.test = NaN(size(df,1),1);
+for t = 1:length(date)
+    day   = df(df.date==date(t),:);
+    day20 = day(1:20,:);
+    invcumshare = 1/sum(day20.share20_mctr);
+    df.share20_mctr(df.date==date(t)) = ...
+        df.share20_mctr(df.date==date(t)) .* invcumshare;
+    df.test(df.date==date(t)) = sum(df.share20_mctr(df.date==date(t)));
+end
+df.share20_market_cap = df.share20_mctr;
+
+
 
 % Calculate weighted prices
 df.wprice   = df.price .* df.share_market_cap;
