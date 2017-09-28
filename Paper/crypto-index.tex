@@ -50,7 +50,7 @@ Last, we measure market capitalization $c_{i,t}$ by price times quantity $p_{i,t
 Note that our definition of market capitalization is just a proxy for the actively traded assts, called the ``public float''.
 In stock market indices, only shares that are actively tradable are included in calculating those indices.
 This is commonly done by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
-So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (look e.g.\ for \citeauthor{Zombiecoins}) where people lost their Bitcoins since they saved them on a hard drive which then got broken. Due to the decentralized structure of most of the cryptocurrencies, these coins are lost or ``dead'' and cannot be sold at any point in the future.}
+So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (e.g.\ \cite{LetsTalkBitcoin}) where people lost their Bitcoins since they saved them on a hard drive which then got broken. Due to the decentralized structure of most of the cryptocurrencies, these coins are lost or ``dead'' and cannot be sold at any point in the future.}
 We therefore propose to weight the index with respect to the market capitalization based on coins traded in the last four years and suggest to reconsider weighting it with respect to shares of actively tradable assets when this information is available in the future.
 Further, we define the weight of a single currency to be 20~\% at its maximum similarly to the approach in the German stock index DAX where the maximum share is 10~\% for 30 assets.
 Since Bitcoin has right now the largest market capitalization, the effect of changes in Bitcoin prices to the LCI20 is softened.
@@ -78,7 +78,7 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 
 Crypto currencies have experienced an upswing in the last months.
 Figure~\ref{f:lci20} shows the evolution of our proposed index and Bitcoin's market capitalization share over the last 11 months at a daily data basis.
-The data contains daily closing prices and market capitalization, both downloaded from \citeauthor{CoinCap} via their Rest API.
+The data contains daily closing prices and market capitalization, both downloaded from \cite{CoinCap} via their Rest API.
 It includes up at least 21 up to 32 different cryptocurrencies per day between November 1, 2016 to September 19, 2017 from which we choose the 20 currencies with the largest market capitalization at that specific date according to the description above.\footnote{We exclude seven days on which there is no price for Bitcoin or Ethereum.}
 In our exercise, the shares are truncated at a maximum $\bar s = 0.2$.
 Base date $t_0$ is November 1, 2016.
