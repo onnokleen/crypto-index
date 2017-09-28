@@ -52,7 +52,8 @@ In stock market indices, only shares that are actively tradable are included in 
 This is commonly done by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
 So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (look e.g.\ for \citeauthor{Zombiecoins}) where people lost their Bitcoins since they saved them on a hard drive which then got broken. Due to the decentralized structure of most of the cryptocurrencies, these coins are lost or ``dead'' and cannot be sold at any point in the future.}
 We therefore propose to weight the index with respect to the market capitalization based on coins traded in the last four years and suggest to reconsider weighting it with respect to shares of actively tradable assets when this information is available in the future.
-In the following, we will consider the full market capitalization for visualization.
+Further, we define the weight of a single currency to be 20~\% at its maximum similarly to the approach in the German stock index DAX where the maximum share is 10~\% for 30 assets.
+Since Bitcoin has right now the largest market capitalization, the effect of changes in Bitcoin prices to the LCI20 is softened.
 
 
 \subsection{Six steps to calculate LCI20}
@@ -78,9 +79,9 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 Crypto currencies have experienced an upswing in the last months.
 Figure~\ref{f:lci20} shows the evolution of our proposed index and Bitcoin's market capitalization share over the last 11 months at a daily data basis.
 The data contains daily closing prices and market capitalization, both downloaded from \citeauthor{CoinCap} via their Rest API.
-It includes up to 32 cryptocurrencies between November 1, 2016 to September 19, 2017 from which we choose the 20 currencies with the largest market capitalization at that specific date according to the description above.
+It includes up at least 21 up to 32 different cryptocurrencies per day between November 1, 2016 to September 19, 2017 from which we choose the 20 currencies with the largest market capitalization at that specific date according to the description above.\footnote{We exclude seven days on which there is no price for Bitcoin or Ethereum.}
 In our exercise, the shares are truncated at a maximum $\bar s = 0.2$.
-Start date $t_0$ is November 1, 2016.
+Base date $t_0$ is November 1, 2016.
 
 Our index increases from November 2016 to mid of September 2017 by 313~\%.
 Several new currencies have been introduced/split and gained sizable market capitalization shares.
@@ -101,7 +102,7 @@ Figure~\ref{f:curshares} depicts the market capitalization shares for the five m
     \caption{Currency shares along 2017}\label{f:curshares}%
     \includegraphics[width=\textwidth]{figs/currency_shares.eps}%
     \medskip\newline% Separate caption and notes
-    \fnotes{Individual market capitalization as share of the total market capitalization measured on the 15th day of the respective month.}
+    \fnotes{Individual market capitalization as share of the total market capitalization measured on the 15th of the respective month.}
 \end{figure}
 
 
@@ -138,6 +139,11 @@ Therefore, private investors are usually advised not to trade their old coins or
     \fnotes{LCI20 and prices are normalized to 100 in Aug 2, 2017.}
 \end{figure}
 
+Immaturity of market may lead right now to frequent changes of assets included in the lower ranks of our index.
+However, we want our definition of the LCI20 to be ``future-proof'' and expect volatility among ranking of crypto-assets in terms of market capitalization should to decrease in the upcoming two years.
+
+
+
 
 
 \pagebreak
@@ -160,23 +166,12 @@ We propose to use one-hour averaged prices for currencies that are anticipated t
   \item Done: If there is a split (like Bitcoin), new currency is part of Lykke 20 but is part of constituents-check at the end of the week.
   \item Done: Basis: 100 Punkte? - Yes
   \item Done: How to get market capitalization of public float? Wikipedia:  In general, the large holdings of founding shareholders, corporate cross-holdings, and government holdings in partially privatized companies are excluded when calculating the size of a public float. https://www.coindesk.com/rethinking-bitcoin-market-cap/: In 2014, NVIDIA engineer John Ratcliff theorized that approximately 30\% of the current bitcoin supply is made up of ``zombie'' bitcoins that have been inactive for more than a year This number includes bitcoins connected to inaccessible wallets, government-seized bitcoins, ``burned'' bitcoins and bitcoins abandoned during the early days of bitcoins, including Nakamoto's mythical stash of over a million bitcoins.
-  \item Maximal weight maybe 20\%? DAX: Maximum weight 10\%.
+  \item Done: Maximal weight maybe 20\%? DAX: Maximum weight 10\%.
+  \item Done: How does it work in other indices? -- DAX: Weighting based on market capitalization of public float (bedeutet Streubesitz, keine Aktien von Langzeitanlegern  wie Familie Porsche/Quant).
 \end{itemize}
 
-
-
-\subsection{How does it work in other indices}
-
-\begin{itemize}
-  \item DAX: Weighting based on market capitalization of public float (bedeutet Streubesitz, keine Aktien von Langzeitanlegern  wie Familie Porsche/Quant).
-\end{itemize}
 
 \subsection{Features}
-
-\begin{itemize}
-  \item
-  \item Constituent changes each week. Maybe Friday? Maybe based on trade volume in last 7 days? Good against ``dead coins''.
-\end{itemize}
 
 \begin{table*}
 \caption{Proposal vs.\ example}
@@ -195,16 +190,6 @@ We propose to use one-hour averaged prices for currencies that are anticipated t
 \fnotes{In this table differences in implementation of our example and our actual proposal are reported. Problems addressed in our proposal are reported in the first column, our solution to these in are summarized in the second column and last, we report our reduced-form example's compromise.}
 \end{table*}
 
-
-
-
-
-Immaturity of market may lead right now to frequent changes of assets included in the lower ranks of our index.
-However, we want our definition of the LCI20 to be ``future-proof'' and expect volatility among ranking of crypto-assets in terms of market capitalization should to decrease in the upcoming two years.
-
-We download daily closing prices and market capitalization from \href{https://coincap.com}{\textit{coincap.com}} via their Rest API.
-Our data set includes up to 33 different cryptocurrencies listed on \href{https://coincap.com}{\textit{coincap.com}} in between 26.10.2016 and 19.09.2017.\footnote{Currencies are included if they were among the currencies with the largest market capitalization at \dots}
-We exclude days on which there is no price for Bitcoin or Ethereum.
 
 
 
