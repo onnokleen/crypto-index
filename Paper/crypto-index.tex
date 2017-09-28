@@ -122,6 +122,9 @@ Figure~\ref{f:curshares} depicts the market capitalization shares for the five m
 In comparison to \cite{Trimborn2016}, we choose the LCI20 to contain 20 cryptocurrencies once at a time.
 They are sorted by market capitalization from high to low and the index will consist always of the first twenty.
 This has the advantage that the index represents always the 20th most ``important'' crypto-assets.
+On September 19, these set of currencies had a share of 92 \% of the total market capitalization and a 24 hour trading volume of 94 \% of the total trading volume.
+If we add another 30 currencies, the 24 hour trading volume increases only by 2 percentage points and the index value does only change marginally.
+We therefore prefer a smaller but better traceable index consisting of 20 cryptocurrencies.
 
 We suspect that with intra-day data, the volatility of the index increases in times shortly before and after a split.
 For the daily data we use, this is not an issue as it can be seen in Figure~\ref{f:split} for the example of the split of Bitcoin Cash.
@@ -156,18 +159,13 @@ For anticipated splits/forks we propose an adaptive smoothing technique for addr
 We propose to use one-hour averaged prices for currencies that are anticipated to split when calculating LCI20 beginning one day in advance and ending one day after split
 
 
-
-
-
 \subsection{Questions to address}
 \begin{itemize}
-  \item Why 20 currencies? 19-09-2017 14:41 20th market capitalization (STEEM) is only \$286.382.955 and 24 hour trading volume of \$686. Further, the 20 currencies with the highest market capitalization have a share of 92 \% of the total market capitalization and a 24 hour trading volume of 94 \% of the total trading volume of September 22, 2017. If we add another 30 currencies, the 24 hour trading volume increases by 2 percentage points where we think that a smaller but better traceable index outweighs an index with a larger but more volatile currency base.
+
   \item Done: ``Dead coins'' a problem?
   \item Done: How to get market capitalization of public float? Wikipedia:  In general, the large holdings of founding shareholders, corporate cross-holdings, and government holdings in partially privatized companies are excluded when calculating the size of a public float. https://www.coindesk.com/rethinking-bitcoin-market-cap/: In 2014, NVIDIA engineer John Ratcliff theorized that approximately 30\% of the current bitcoin supply is made up of ``zombie'' bitcoins that have been inactive for more than a year This number includes bitcoins connected to inaccessible wallets, government-seized bitcoins, ``burned'' bitcoins and bitcoins abandoned during the early days of bitcoins, including Nakamoto's mythical stash of over a million bitcoins.
 \end{itemize}
 
-
-\subsection{Features}
 
 \begin{table*}
 \caption{Proposal vs.\ example}
