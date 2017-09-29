@@ -3,6 +3,7 @@
 clear; close all
 if ~exist('../bld','dir'); mkdir('../bld'); end
 if ~exist('../bld/figures','dir'); mkdir('../bld/figures'); end
+addpath('../Data');
 
 % Global settings
 fnt_size = 8;% Font size
