@@ -29,15 +29,25 @@ Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{m
 \begin{document}
 \maketitle
 
+\begin{abstract}
+    Cryptocurrencies have gained increasing attention and momentum in prices during the last months.
+    To measure movements at the market as a whole, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.
+    The purpose of our index is to closely follow the value of cryptocurrencies both to reflect short-term movements and long-term trends.
+    We address cryptocurrency-specific challenges as there are, for example, the distinct market behavior around currency splits and suggest to track index evolution in real time.
+\end{abstract}
 
-We propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.\footnote{Code and PDF can be found at \href{https://github.com/onnokleen/crypto-index}{GitHub}.}
-The purpose of our index is to closely follow the value of cryptocurrencies in comparison to the US dollar.
-We address cryptocurrency-specific challenges as there are, for example, the distinct market behavior around currency splits and the wish to track index evolution in real time.
+
+\section{Introduction}
+
+The increasing share of people trading cryptocurrencies and the increasing amount of cryptocurrencies itself make it desirable to have an index which is able to track long-term trend as well as short-term movements.\footnote{Code and PDF can be found at \href{https://github.com/onnokleen/crypto-index}{GitHub}.}
+To fill this gap, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.
+The index is set up in real time such that its composition can change, for example, if another currency overtakes the 20th index currency in terms of market capitalization.
 
 We proceed as follows:
 First, notation and our index calculation are introduced.
-Second, we discuss pros and cons of our method.
-Third, a reduced-form example of our index on daily data is presented.
+Second, we introduce how the index is calculated.
+Third, we present a reduced-form example of our index on daily data in a susequent section.
+Finally, pros and cons of our method are discussed.
 
 
 \section{Definition}
@@ -50,13 +60,14 @@ Last, we measure market capitalization $c_{i,t}$ by price times quantity $p_{i,t
 Note that our definition of market capitalization depends on a proxy  called the ``public float''.
 In stock market indices, only shares that are actively tradable are included in calculating those indices.
 This is commonly done by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
-So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (e.g.\ \cite{LetsTalkBitcoin}) where people lost their Bitcoins since they saved them on a hard drive which then got broken. 
+So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (e.g.\ \citeauthor{LetsTalkBitcoin}, 2017) where people lost their Bitcoins since they saved them on a hard drive which then got broken.
 Due to the decentralized structure of most of the cryptocurrencies, these coins are lost or ``dead'' and cannot be sold at any point in the future.}
 We therefore propose to weight the index with respect to the market capitalization based on coins traded in the last four years and suggest to reconsider weighting it with respect to shares of actively tradable assets when this information is available in the future.
 Further, we define the weight of a single currency to be 20~\% at its maximum similarly to the approach in the German stock index DAX where the maximum share is 10~\% across 30 assets.
 Since Bitcoin has right now the largest market capitalization, the effect of changes in Bitcoin prices to the LCI20 is softened.
 
-\subsection{Six steps to calculate LCI20}
+
+\section{Calculation steps}
 
 Our index is defined as a standardized ratio of weighted sums relative to its initial value:
 \begin{equation}
@@ -75,9 +86,9 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 \end{enumerate}
 
 
-\subsection{Data exercise}
+\section{Data exercise}
 
-Crypto currencies have experienced an upswing in the last months.
+Cryptocurrencies have experienced an upswing in the last months.
 For illustration of the strengths of our proposed LCI20, we employ our definition on real-world data.
 Even though our index is defined in real-time prices, we use daily data due to limited availability of high-frequency time series.
 The data contains daily closing prices and market capitalization, both downloaded from \cite{CoinCap} via their Rest API.
@@ -92,19 +103,19 @@ Bitcoin Cash split from Bitcoin in August 2017 and has a current market capitali
 Therefore, Bitcoin's market capitalization share decreased from higher than 90~\% in November 2016 to below 50~\% now.
 Figure~\ref{f:curshares} depicts the market capitalization shares for the five most important currencies (in terms of market shares today).
 
-\begin{figure}[h]%
+\begin{figure}[p]%
     \centering%
     \caption{Evolution of LCI20}\label{f:lci20}%
     \includegraphics[width=.8\textwidth]{figs/lci20.eps}%
-    \medskip\newline% Separate caption and notes
+    \smallskip\newline% Separate caption and notes
     \fnotes{The figure shows the index value of LCI20 on the left scale. It is normalized to 100 in November 1, 2016. The market capitalization share of Bitcoin, sometimes called ``Dominance Index'', is on the right scale.}
 \end{figure}
 
-\begin{figure}[h]%
+\begin{figure}[p]%
     \centering%
     \caption{Currency shares along 2017}\label{f:curshares}%
     \includegraphics[width=.8\textwidth]{figs/currency_shares.eps}%
-    \medskip\newline% Separate caption and notes
+    \smallskip\newline% Separate caption and notes
     \fnotes{Individual market capitalization as share of the total market capitalization measured on the 15th of the respective month.}
 \end{figure}
 
@@ -114,11 +125,11 @@ Figure~\ref{f:curshares} depicts the market capitalization shares for the five m
  Due to the predominance of Bitcoin, one concern could be that the index is redundant if one follows just the Bitcoin price instead of LCI20.
  Figure~\ref{f:lci20vsBTC} shows that both the index and the price of Bitcoins evolve similarly but diverge over time since Bitcoin's share of market capitalization falls.
 
- \begin{figure}[p]%
+ \begin{figure}[ht]%
      \centering%
      \caption{LCI20 vs.\ Bitcoin price}\label{f:lci20vsBTC}%
      \includegraphics[width=.8\textwidth]{figs/lci20_vs_btc.eps}%
-     \medskip\newline% Separate caption and notes
+     \smallskip\newline% Separate caption and notes
      \fnotes{LCI20 and Bitcoin price is normalized to 100 in Nov 1, 2016.}
  \end{figure}
 
@@ -137,11 +148,11 @@ However, both currencies share the same transaction history.
 If one incautiously pushes now a transaction containing only old coins to the wrong transaction chain, one will loose the pushed value in both currencies.
 Therefore, private investors are usually advised not to trade their old coins or newly gained currency in the days after a split but to wait until it is settled if the new currency becomes accepted.
 
-\begin{figure}[p]%
+\begin{figure}[ht]%
     \centering%
     \caption{LCI20 at Bitcoin Cash split}\label{f:split}%
     \includegraphics[width=.8\textwidth]{figs/lci20_bch_split.eps}%
-    \medskip\newline% Separate caption and notes
+    \smallskip\newline% Separate caption and notes
     \fnotes{LCI20 and prices are normalized to 100 in Aug 2, 2017.}
 \end{figure}
 
@@ -153,7 +164,7 @@ However, we want our definition of the LCI20 to be ``future-proof'' and expect v
 
 
 
-\section{Conclusion}\label{sec:conclusion }
+% \section{Conclusion}\label{sec:conclusion }
 %For anticipated splits/forks we propose an adaptive smoothing technique for addressing ``insane'' price movements in direct aftermath.
 %We propose to use one-hour averaged prices for currencies that are anticipated to split when calculating LCI20 beginning one day in advance and ending one day after split
 
