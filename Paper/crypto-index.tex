@@ -31,7 +31,7 @@ Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{m
 
 \begin{abstract}
     Cryptocurrencies have gained increasing attention and momentum in prices during the last months.
-    To measure movements at the market as a whole, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.
+    To measure cryptocurrency market movements as a whole, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.
     The purpose of our index is to closely follow the value of cryptocurrencies both to reflect short-term movements and long-term trends.
     We address cryptocurrency-specific challenges as there are, for example, the distinct market behavior around currency splits and suggest to track index evolution in real time.
 \end{abstract}
@@ -44,9 +44,9 @@ To fill this gap, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted 
 The index is set up in real time such that its composition can change, for example, if another currency overtakes the 20th index currency in terms of market capitalization.
 
 We proceed as follows:
-First, notation and our index calculation are introduced.
+First, the notation is introduced.
 Second, we introduce how the index is calculated.
-Third, we present a reduced-form example of our index on daily data in a susequent section.
+Third, we present a reduced-form example of our index on daily data in a subsequent section.
 Finally, pros and cons of our method are discussed.
 
 
@@ -54,7 +54,7 @@ Finally, pros and cons of our method are discussed.
 
 Let $t$ denote our continuous time index starting at time $t_0$.
 Moreover, $\mathcal{C}_t \in \mathbb{N}$ is the set of coins that are tradable at time $t$ across $M \in \mathbb{N}$ relevant market places for crypto-assets.
-The price $p_{i,t}$ of asset $i$ at time $t$ is calculated as the mean of the bid-ask spread's midpoints across all $M$ markets.
+The price $p_{i,t}$ of cryptocurrency $i$ at time $t$ is calculated as the mean of the bid-ask spread's midpoints across all $M$ markets.
 Quantity $q_{i,t}$ denotes the number of actively traded shares/items of asset $i$ at time $t$.
 Last, we measure market capitalization $c_{i,t}$ by price times quantity $p_{i,t} \cdot q_{i,t}$.
 Note that our definition of market capitalization depends on a proxy  called the ``public float''.
@@ -76,8 +76,8 @@ Our index is defined as a standardized ratio of weighted sums relative to its in
 
 \noindent To calculate the index at time $t$, the following six steps are to be taken:
 \begin{enumerate}
-  \item Select the 20 largest cryptocurrencies by market capitalization.
-  \item Calculate each coins market share $s_{i,t} = \frac{c_{i,t} \cdot q_{i,t}}{\sum_{i \in C_t} c_{i,t}}$.
+  \item Select the 20 largest cryptocurrencies by market capitalization $c_{i,t} = p_{i,t} \cdot q_{i,t}$.
+  \item Calculate each coins market share $s_{i,t} = \frac{c_{i,t}}{\sum_{i \in C_t} c_{i,t}}$.
   \item Truncate market shares by maximum $\bar s$: $\bar s_{i,t} = \max\{ s_{i,t}, \bar s\}$.
   \item Rescale them, so weights sum up to one: $w_{i,t} = \frac{\bar s_{i,t}}{\sum_{i \in \mathcal{C}_t} \bar s_{i,t}}$.
   \item Calculate the weighted average $$\widetilde{\text{LCI20}}_t = \sum_{i \in \mathcal{C}_{t}} w_{i,t} c_{i,t}$$
