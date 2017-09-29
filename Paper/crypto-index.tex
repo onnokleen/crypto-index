@@ -39,7 +39,7 @@ Christopher Zuber\thanks{Heidelberg University, Department of Economics, \href{m
 
 \section{Introduction}
 
-The increasing share of people trading cryptocurrencies and the increasing amount of cryptocurrencies itself make it desirable to have an index which is able to track long-term trend as well as short-term movements.\footnote{Code and PDF can be found at \href{https://github.com/onnokleen/crypto-index}{GitHub}.}
+The increasing share of people trading cryptocurrencies and the increasing amount of cryptocurrencies itself make it desirable to have an index which is able to track their long-term trends as well as short-term movements.\footnote{Code and PDF can be found at \href{https://github.com/onnokleen/crypto-index}{GitHub}.}
 To fill this gap, we propose the Lykke Crypto Index 20 (LCI20) to be a weighted average of the 20 largest cryptocurrencies' market capitalization.
 The index is set up in real time such that its composition can change, for example, if another currency overtakes the 20th index currency in terms of market capitalization.
 
@@ -56,8 +56,8 @@ Let $t$ denote our continuous time index starting at time $t_0$.
 Moreover, $\mathcal{C}_t \in \mathbb{N}$ is the set of coins that are tradable at time $t$ across $M \in \mathbb{N}$ relevant market places for crypto-assets.
 The price $p_{i,t}$ of cryptocurrency $i$ at time $t$ is calculated as the mean of the bid-ask spread's midpoints across all $M$ markets.
 Quantity $q_{i,t}$ denotes the number of actively traded shares/items of asset $i$ at time $t$.
-Last, we measure market capitalization $c_{i,t}$ by price times quantity $p_{i,t} \cdot q_{i,t}$.
-Note that our definition of market capitalization depends on a proxy  called the ``public float''.
+Last, we measure liquid market capitalization $c_{i,t}$ by price times quantity $p_{i,t} \cdot q_{i,t}$.
+Note that our definition of quantity depends on a proxy called the ``public float'' or ``number of outstanding shares''.
 In stock market indices, only shares that are actively tradable are included in calculating those indices.
 This is commonly done by excluding shares held by strategic long-term investors, e.g.\ founding shareholders or government.
 So far, there is neither a systematic and publicly available recording of amounts held by strategic long-term investors nor is the amount of ``dead'' coins known.\footnote{The web is full of reports (e.g.\ \citeauthor{LetsTalkBitcoin}, 2017) where people lost their Bitcoins since they saved them on a hard drive which then got broken.
@@ -157,7 +157,7 @@ Therefore, private investors are usually advised not to trade their old coins or
 \end{figure}
 
 Immaturity of markets may lead right now to frequent changes of assets included in the lower ranks of our index.
-However, we want our definition of the LCI20 to be ``future-proof'' and expect volatility among ranking of crypto-assets in terms of market capitalization to decrease in the upcoming two years.
+However, we want our definition of the LCI20 to be ``future-proof'' and expect volatility among ranking of crypto-assets in terms of market capitalization to decrease in the upcoming two years. Note that the index is easily extendable to contain more than 20 cryptocurrencies if the share of the index' market capitalization does not reflect the whole market capitalization anymore.
 
 
 
