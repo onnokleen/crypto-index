@@ -1,13 +1,11 @@
-# README to "Lykke Crypto Index 20"
+# Market index for cryptocurrencies
 
-In this project, we propose the crypto-index LCI20 and visualize our index for daily data between November 1, 2016 and September 19, 2017.
-The whitepaper is submitted to Lykke Streams' project [Join Lykke in launching a crypto-index investment fund](https://streams.lykke.com/Project/ProjectDetails/join-lykke-in-launching-a-crypto-index).
+Cryptocurrencies (like Bitcoin for example) have recently received much attention, with their prices gaining momentum lately. Joining a competition on the design of market indices for such currencies organized by [Lykke.com](https://streams.lykke.com/Project/ProjectDetails/join-lykke-in-launching-a-crypto-index), we propose the market index *Lykke Crypto Index 20* to be the weighted average of the 20 largest cryptocurrencies' market capitalization. The purpose of the index is to closely follow the value of cryptocurrencies, and to reflect both short-term movements and long-term trends.
 
-The project structure is as follows:
+We structured our project as follows:
 
-- *Data/* contains our daily data sample as well as a data snapshot of all available currencies and their market capitalization from September 22, 2017.
-- The file *crypto_index.m* in *Matlab/* calculates the index and produces the paper figures.
-- In *Paper/*, our whitepaper can be found.
-- The file *crypto-index.r* in *R/* contains the code to download the data via the Rest API and other exercises to construct the index.
+- Our technical paper can be found in the directory *Paper/*.
+- The analysis is done in the directories *Matlab/* and *R/*. In *Matlab/* we calculate the index and produce the paper figures. *R/* contains the code to download the data via the Rest API and other exercises to construct the index.
+- In *Data/*, we store our daily data sample as well as a data snapshot of all available currencies and their market capitalization on September 22, 2017.
 
-The research is conducted by Onno Kleen and Christopher Zuber.
+The research is conducted by [Onno Kleen](https://www.uni-heidelberg.de/fakultaeten/wiso/awi/professuren/empwirtfor/onnokleen.html) and [Christopher Zuber](http://www.uni-heidelberg.de/fakultaeten/wiso/awi/professuren/wipol/CvChristopherZuber.html).
