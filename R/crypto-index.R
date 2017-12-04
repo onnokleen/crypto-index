@@ -87,8 +87,7 @@ df_index <-
   full_join(df_index, df_n_currencies, by = "date") %>%
   filter(n_currencies >= 21, market_cap > 0) %>%
   mutate(weekday = wday(date)) %>%
-  arrange(date) %>%
-  filter(date <= "2017-09-19")
+  arrange(date)
 
 write_csv(df_index, "../Data/df_index.csv")
 
