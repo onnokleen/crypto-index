@@ -11,7 +11,8 @@ linewdth = 1.2;% linewidth
 
 
 df = readtable('df_index.csv');
-df = df(df.date>='2016-11-01',:);
+enddate = max(df.date);
+df = df(df.date>='2016-11-01'&df.date<enddate,:);
 df.symbol = categorical(df.symbol);
 % Re-sort by (1st) date, (2nd) market cap
 df = sortrows(df,{'date','market_cap'},{'ascend','descend'});
