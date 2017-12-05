@@ -88,7 +88,7 @@ set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
 % Format y axes
-y1sr_lim  = [0, 400];% Lower and upper bound of y1 axis
+y1sr_lim  = [0, 1000];% Lower and upper bound of y1 axis
 y2sr_lim  = [0.4, 1];% Lower and upper bound of y2 axis
 ylim(ax(1),y1sr_lim)
 set(ax(1),'ytick',y1sr_lim(1):100:y1sr_lim(2),'box','off')
@@ -126,8 +126,8 @@ set(ax(2),'xcolor','k', 'ycolor','k','fontsize',fnt_size, ...
     'tickdir','out','xticklabel',[],'xtick',[])
 linkaxes(ax,'x');
 % Format y axes
-y1sr_lim  = [0, 700];% Lower and upper bound of y1 axis
-y2sr_lim  = [0, 700];% Lower and upper bound of y2 axis
+y1sr_lim  = [0, 1600];% Lower and upper bound of y1 axis
+y2sr_lim  = [0, 1600];% Lower and upper bound of y2 axis
 ylim(ax(1),y1sr_lim)
 set(ax(1),'ytick',y1sr_lim(1):100:y1sr_lim(2),'box','off')
 ylim(ax(2),y2sr_lim)
@@ -201,7 +201,8 @@ print('-depsc','../Paper/figs/lci20_bch_split.eps')
 clist = {'BTC','ETH','BCH','XRP','LTC'};
 dlist = {'2017-01-15','2017-02-15', ...
          '2017-03-15','2017-04-15','2017-05-15','2017-06-15', ...
-         '2017-07-15','2017-08-15','2017-09-15'};
+         '2017-07-15','2017-08-15','2017-09-15','2017-10-15', ...
+         '2017-11-15','2017-12-02'};
 
 A = zeros(length(dlist),length(clist)+1);
 for i = 1:length(dlist)
@@ -220,7 +221,8 @@ lgnd = legend({'BTC','ETH','BCH','XRP','LTC','Other'},'location','EastOutside');
 ax = gca;
 ax.TickLength = [0 0];
 ax.YTick = 0:0.25:1;
-ax.XTickLabel = {'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'};
+ax.XTickLabel = {'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug',...
+    'Sep','Oct','Nov','Dec'};
 ax.XTickLabelRotation = 0;
 ax.FontSize = 8;
 
