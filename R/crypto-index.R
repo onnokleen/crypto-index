@@ -10,6 +10,11 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")
 
 download_coincap_one_currency <- function(symbol) {
   raw_json <- jsonlite::fromJSON(paste0("http://coincap.io/history/", symbol))
+  
+  if (is.null(raw_json) == TRUE) {
+    return(NULL)
+  }
+  
   df_symbol <-
     lapply(seq_along(raw_json), 
            function(i) {
@@ -22,14 +27,16 @@ download_coincap_one_currency <- function(symbol) {
   cbind(data_frame(symbol = symbol), df_symbol)
 }
 
+# test5 <- jsonlite::fromJSON("https://api.coinmarketcap.com/v1/ticker/?limit=0")
+
 get_coincap_series <- function (symbols) {
   bind_rows(lapply(symbols, FUN = download_coincap_one_currency))
 }
 
-currencies <- c("BTC", "IOT", "ETH", "BCH", "XRP", "LTC", "DASH", "XEM", "XMR", "ETC", "NEO", "OMG", "LSK", "QTUM", "STRAT",
-                "USDT", "ZEC", "WAVES", "ARK", "EOS", "STEEM", "MAID", "EOS", "BAT", "BTS", "REP", "PAY", "DCR", "KMD", "VERI", "HSR", "PIVX", "NXS")
+# currencies <- c("BTC", "IOT", "ETH", "BCH", "XRP", "LTC", "DASH", "XEM", "XMR", "ETC", "NEO", "OMG", "LSK", "QTUM", "STRAT",
+#                 "USDT", "ZEC", "WAVES", "ARK", "EOS", "STEEM", "MAID", "EOS", "BAT", "BTS", "REP", "PAY", "DCR", "KMD", "VERI", "HSR", "PIVX", "NXS")
 
-df_daily <- get_coincap_series(currencies)
+df_daily <- get_coincap_series(markets$MarketCurrency)
 
 df_daily %>%
   mutate(date = date(date),
