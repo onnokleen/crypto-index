@@ -88,9 +88,10 @@ df_intraday <-
   mutate(symbol = ifelse(market == "USDT-BTC", "BTC", substr(market, 5, nchar(market)))) %>%
   mutate(date = date(dt)) 
 
-write_csv(df_intraday, "../Data/first_intraday_starting_2017-12-17.csv.gz")
+#write_csv(df_intraday, "../Data/first_intraday_starting_2017-12-17.csv.gz")
 
 df_daily_index <- foreach (i = unique(df_daily$date), .combine = bind_rows) %do% {
+  print(i)
   if (length(unique(filter(df_daily, date == i)$symbol)) < 20 | ("BTC" %in% unique(filter(df_daily, date == i)$symbol) == FALSE)) {
     NULL
   } else {
@@ -119,6 +120,14 @@ initial_value <- df_daily_index$coi[1]
 
 df_daily_index$coi <- df_daily_index$coi / initial_value * 100
 
+write_csv(df_daily_index, "df_daily_coi.csv")
+
+df_daily_index <- read_csv("df_daily_coi.csv")
+
+df_daily_index %>%
+  ggplot() + 
+  geom_line(aes(x = date, y = coi))
+
 df_btc <- 
   df_daily %>%
   filter(symbol == "BTC") %>%
@@ -135,6 +144,9 @@ df_joint %>%
   spread(index, value) %>%
   summarise(cor = cor(coi, btc_price_div_10))
 
+df_daily_index %>%
+  ggplot() +
+  geom_line(aes(x = date, y = coi))
 
 ggplotly(df_joint %>%
            filter(date >= "2017-01-01") %>%
@@ -186,6 +198,10 @@ df_intraday_index <- foreach (i = unique(df_joint$dt), .combine = bind_rows) %do
 
 df_intraday_index$coi <- df_intraday_index$coi / initial_value * 100
 
+df_intraday_index %>%
+  ggplot() + 
+  geom_line(aes(x = dt, y = coi)) +
+  theme(legend.position = "below")
 
 ggplotly(df_intraday_index %>%
            ggplot() + 

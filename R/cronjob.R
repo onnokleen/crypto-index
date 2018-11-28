@@ -1,4 +1,3 @@
-library(data.table)
 library(dplyr)
 library(readr)
 library(purrr)
@@ -6,7 +5,6 @@ library(lubridate)
 library(ggplot2)
 library(ggthemes)
 library(foreach)
-library(plotly)
 library(tidyr)
 
 setwd("/Users/Arbeit/Git/crypto-index/R")
@@ -34,12 +32,13 @@ get_bittrex <- function (market) {
     rename(btc = `C`)
   
   left_join(df_market, select(df_btc, `T`, btc) , by = "T") %>%
-    rename(open = `O`,
+    select(open = `O`,
            high = `H`,
            low = `L`,
            close = `C`,
            volume = `V`,
-           dt = `T`) %>%
+           dt = `T`,
+           everything()) %>%
     mutate(dt = as_datetime(dt))
 }
 
